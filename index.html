@@ -120,6 +120,7 @@
         .card img {
             width: 100%;
             border-radius: 10px;
+            background-color: #fff;
         }
 
         .card h3 {
@@ -206,6 +207,111 @@
             }
         }
     </style>
+    <script src="https://unpkg.com/wavesurfer.js"></script>
+
+    <script>
+class AudioPlayer extends HTMLElement {
+    connectedCallback() {
+        const src = this.getAttribute('src');
+        const title = this.getAttribute('title');
+        const id = `waveform-${Math.random().toString(36).substr(2, 9)}`; // Unique ID for the waveform container
+
+        this.innerHTML = `
+            <div style="text-align: center;">
+                <h4 style="color: white; margin: 10px 0;">${title}</h4>
+                <div id="${id}-placeholder" style="width: 100%; height: 80px; background: rgba(255, 255, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 14px; color: #fff;">Loading...</div>
+                <div id="${id}" style="width: 100%; height: 80px; display: none;"></div>
+                <button id="${id}-play" style="margin-top: 10px; background-color: #ff4500; color: #fff; border: none; padding: 5px 10px; cursor: pointer;">Play</button>
+            </div>
+        `;
+
+        const placeholder = this.querySelector(`#${id}-placeholder`);
+        const waveformContainer = this.querySelector(`#${id}`);
+        const playButton = this.querySelector(`#${id}-play`);
+
+        const waveform = WaveSurfer.create({
+            container: `#${id}`,
+            waveColor: 'violet',
+            progressColor: '#ff4500',
+            barWidth: 2,
+            responsive: true,
+            height: 80
+        });
+
+        // Show the waveform and hide the placeholder once the audio is ready
+        waveform.on('ready', () => {
+            placeholder.style.display = 'none';
+            waveformContainer.style.display = 'block';
+        });
+
+        // Handle play/pause button functionality
+        playButton.addEventListener('click', () => {
+            if (waveform.isPlaying()) {
+                waveform.pause();
+                playButton.textContent = 'Play';
+            } else {
+                waveform.play();
+                playButton.textContent = 'Pause';
+            }
+        });
+
+        // Load the audio
+        waveform.load(src);
+    }
+}
+
+customElements.define('audio-player', AudioPlayer);
+
+// Playlist Data
+const playlist = [
+    { src: "mixes/mix1.mp3", title: "Electro Swing Mix" },
+    { src: "mixes/mix2.mp3", title: "Funky House Mix" },
+    { src: "mixes/mix3.mp3", title: "Deep Chill Mix" }
+];
+
+// Render Playlist
+const playlistContainer = document.getElementById("playlist-container");
+playlist.forEach((track, index) => {
+    const trackElement = document.createElement("div");
+    trackElement.className = "playlist-item";
+    trackElement.style.marginBottom = "20px";
+
+    trackElement.innerHTML = `
+        <div style="text-align: center;">
+            <h4 style="color: white; margin: 10px 0;">${index + 1}. ${track.title}</h4>
+            <div id="waveform-${index}" style="width: 100%; height: 80px; background: rgba(255, 255, 255, 0.1);"></div>
+            <button id="play-btn-${index}" style="margin-top: 10px; background-color: #ff4500; color: #fff; border: none; padding: 5px 10px; cursor: pointer;">Play</button>
+        </div>
+    `;
+
+    playlistContainer.appendChild(trackElement);
+
+    const waveform = WaveSurfer.create({
+        container: `#waveform-${index}`,
+        waveColor: "violet",
+        progressColor: "orange",
+        barWidth: 2,
+        responsive: true,
+        height: 80
+    });
+
+    waveform.load(track.src);
+
+    const playButton = document.getElementById(`play-btn-${index}`);
+    playButton.addEventListener("click", () => {
+        if (waveform.isPlaying()) {
+            waveform.pause();
+            playButton.textContent = "Play";
+        } else {
+            waveform.play();
+            playButton.textContent = "Pause";
+        }
+    });
+});
+
+
+    </script>
+    
 </head>
 <body>
     <header>
@@ -230,32 +336,51 @@
         <button onclick="document.getElementById('tracks').scrollIntoView({ behavior: 'smooth' });">Explore Tracks</button>
     </div>
 
-    <section id="tracks">
-        <h2>My Tracks</h2>
-        <div class="tracks">
-            <div class="card">
-                <img src="https://placecats.com/300/200" alt="Track 1">
-                <h3>Track Title 1</h3>
-                <p>A description of the track.</p>
-            </div>
-            <div class="card">
-                <img src="https://placecats.com/300/200" alt="Track 2">
-                <h3>Track Title 2</h3>
-                <p>A description of the track.</p>
-            </div>
-        </div>
-    </section>
 
     <section id="mixes">
         <h2>My Mixes</h2>
         <div class="mixes">
             <div class="card">
-                <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https://api.soundcloud.com/tracks/104476715&color=A33D47&auto_play=false&show_artwork=true"></iframe>
-                <h3>Popular Mix</h3>
-                <p>An uptempo electro swing mix for your listening pleasure.</p>
+                <img src="mixes/Funkenstein-electro-swing-mix.jpg" alt="Track 1">
+                <h3>Electro Swing Mix</h3>
+                <audio-player src="mixes/Funkenstein-electro-swing-mix.mp3" title="Funkenstein - Electro Swing"></audio-player>
+            </div>
+            <div class="card">
+                <img src="tracks/simple-logo.jpg" alt="Track 1">
+                <h3>Indie Dance Mix</h3>
+                <audio-player src="mixes/Funkenstein-Black-Out-Tuesday.mp3" title="Funkenstein - Black Out Tuesday"></audio-player>
+            </div>
+            <div class="card">
+                <img src="mixes/Funkenstein-disco-mix-october-2020.jpg" alt="Track 1">
+                <h3>Disco Mix</h3>
+                <audio-player src="mixes/Funkenstein-disco-mix-october-2020.mp3" title="Funkenstein - Black Out Tuesday"></audio-player>
             </div>
         </div>
     </section>
+
+    <section id="tracks">
+        <h2>My Tracks</h2>
+        <div class="tracks">
+            <div class="card">
+                <img src="tracks/simple-logo.jpg" alt="Track 1" class="track-image">
+                <h3>House</h3>
+                <audio-player src="tracks/funkenstein-house-roll-the-dices.mp3" title="Funkenstein - Roll the Dices"></audio-player>
+            </div>
+            <div class="card">
+                <img src="tracks/funkenstein-delicate-violence.jpg" alt="Track 2" class="track-image">
+                <h3>Electro</h3>
+                <audio-player src="tracks/funkenstein-delicate-violence.mp3" title="Funkenstein - Délicate Violence"></audio-player>
+            </div>
+            <div class="card">
+                <img src="tracks/simple-logo.jpg" alt="Track 3" class="track-image">
+                <h3>Techno</h3>
+                <audio-player src="tracks/funkenstein-vegan-cheese.mp3" title="Funkenstein - Vegan Cheese"></audio-player>
+            </div>
+
+        </div>
+    </section>
+
+
 
     <section id="promo">
         <h2>Promo Video</h2>
@@ -267,12 +392,9 @@
     <section id="photos">
         <h2>Photo Wall</h2>
         <div class="photo-wall">
-            <img src="https://placecats.com/300/200" alt="Photo 1">
-            <img src="https://placecats.com/300/400" alt="Photo 2">
-            <img src="https://placecats.com/300/200" alt="Photo 3">
-            <img src="https://placecats.com/100/100" alt="Photo 4">
-            <img src="https://placecats.com/100/100" alt="Photo 5">
-            <img src="https://placecats.com/100/100" alt="Photo 6">
+            <img src="img/photos/photo1.jpg" alt="Photo 1">
+            <img src="img/photos/photo2.jpg" alt="Photo 2">
+            <img src="img/photos/photo3.jpg" alt="Photo 3">
         </div>
     </section>
 
