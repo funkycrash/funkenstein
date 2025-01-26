@@ -161,17 +161,17 @@
                 display: none;
             }
         }
-      
     </style>
     <link rel="stylesheet" href="css/main.css">
-    <script src="https://unpkg.com/wavesurfer.js"></script>
+    <script src="https://unpkg.com/wavesurfer.js" defer></script>
     <script src="js/waveform.js" defer></script>
     <script src="js/scroll.js" defer></script>
-<!-- PhotoSwipe CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5.3.8/dist/photoswipe.css">
-<!-- PhotoSwipe JS -->
-<script src="https://cdn.jsdelivr.net/npm/photoswipe@5.3.8/dist/photoswipe.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/photoswipe@5.3.8/dist/photoswipe-lightbox.esm.min.js" type="module" defer></script>
+    <!-- PhotoSwipe CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5.3.8/dist/photoswipe.css">
+    <!-- PhotoSwipe JS -->
+    <script src="https://cdn.jsdelivr.net/npm/photoswipe@5.3.8/dist/photoswipe.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/photoswipe@5.3.8/dist/photoswipe-lightbox.esm.min.js" type="module"
+        defer></script>
 
 </head>
 
@@ -188,12 +188,7 @@
                     <li><a href="#photos">Photos</a></li>
                     <li><a href="#story">Story</a></li>
                     <li><a href="https://open.spotify.com/artist/03i7e4Y5KdQijjkuzFjgf7?si=Nac3fYL0RymsDAesGWAjwA"
-                            target="_blank">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1DB954" width="32px"
-                                height="32px">
-                                <path
-                                    d="M12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0ZM17.2014 17.2341C16.8931 17.6946 16.3043 17.8105 15.8453 17.5007C13.4642 15.9175 10.469 15.3493 7.23871 15.8346C6.7092 15.9167 6.22389 15.5675 6.14185 15.0379C6.0598 14.5084 6.40898 14.0231 6.9385 13.9411C10.5863 13.399 13.9376 13.9826 16.686 15.7237C17.145 16.0334 17.3102 16.7735 17.2014 17.2341ZM18.6225 14.481C18.2597 15.0132 17.5535 15.1646 17.0203 14.8018C14.1864 12.9856 9.93354 12.6218 6.6855 13.5465C6.12433 13.7003 5.55379 13.4003 5.40002 12.8391C5.24625 12.2779 5.54627 11.7074 6.10746 11.5536C9.96485 10.496 14.6658 10.8921 18.0457 12.9704C18.578 13.3332 18.7854 13.9488 18.6225 14.481ZM18.5175 11.3004C15.0928 9.05449 8.93091 8.91583 5.63613 9.98415C5.01045 10.1815 4.36357 9.83844 4.16619 9.21275C3.96882 8.58707 4.31187 7.94019 4.93756 7.74282C8.70846 6.53997 15.5446 6.70517 19.4506 9.29054C19.9928 9.65287 20.1554 10.372 19.7931 10.9142C19.4308 11.4565 18.7116 11.6191 18.5175 11.3004Z" />
-                            </svg>
+                            target="_blank"><img src="img/spotify.svg" alt="Spotify" width="32px" height="32px">
                         </a></li>
                     <li><a href="https://soundcloud.com/dj-funkenstein" target="_blank">
                             <svg enable-background="new 0 0 512 512" height="32px" width="32px" id="Layer_1"
@@ -228,7 +223,7 @@
         <h2>My Mixes</h2>
         <div class="mixes">
             <div class="card">
-                <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay"
+                <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" loading="lazy"
                     src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/104476715&color=%23ff4500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
                 <div
                     style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;">
@@ -239,7 +234,7 @@
                 </div>
             </div>
             <div class="card">
-                <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay"
+                <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" loading="lazy"
                     src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/832950235&color=%23ff4500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
                 <div
                     style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;">
@@ -291,17 +286,17 @@
         <h2>Photo Wall</h2>
         <div class="photo-wall">
             <a href="img/photos/photo1.jpg" data-pswp-width="2048" data-pswp-height="1365">
-                <img src="img/photos/photo1.jpg" alt="Photo 1">
+                <img src="img/photos/photo1.jpg" alt="Photo 1" loading="lazy">
             </a>
             <a href="img/photos/photo2.jpg" data-pswp-width="600" data-pswp-height="399">
-                <img src="img/photos/photo2.jpg" alt="Photo 2">
+                <img src="img/photos/photo2.jpg" alt="Photo 2" loading="lazy">
             </a>
             <a href="img/photos/photo3.jpg" data-pswp-width="2048" data-pswp-height="1365">
-                <img src="img/photos/photo3.jpg" alt="Photo 3">
+                <img src="img/photos/photo3.jpg" alt="Photo 3" loading="lazy">
             </a>
         </div>
     </section>
-    
+
 
     <section id="story">
         <h2>My Story</h2>
@@ -321,16 +316,17 @@
                 private events in and around Paris, including the annual <a
                     href="https://www.facebook.com/watch/?v=658095831000664" target="_blank">Burning Night</a> at the
                 Moulin Rouge in 2013. Then I started mixing in San Francisco, where the electronic music scene has
-                reached a fever pitch and organized the "Beat Brunch" day parties that brought so much fun into your sunny afternoon.
+                reached a fever pitch and organized the "Beat Brunch" day parties that brought so much fun into your
+                sunny afternoon.
             </p>
             <p>
                 Today, I call Maui home, where I draw inspiration from the island’s natural beauty to fuel my
                 creativity. Recent highlights include headlining a massive NYE party in La Ventana’s Arroyo B2B with my
                 friend Martin, and countless parties DJ'ing with my feet in the sand.
             </p>
-            <br/>
-            <br/>
-            <br/>
+            <br />
+            <br />
+            <br />
         </div>
 
 
@@ -343,13 +339,13 @@
     </footer>
     <script type="module">
         import PhotoSwipeLightbox from 'https://cdn.jsdelivr.net/npm/photoswipe@5.3.8/dist/photoswipe-lightbox.esm.min.js';
-    
+
         const lightbox = new PhotoSwipeLightbox({
             gallery: '.photo-wall',
             children: 'a',
             pswpModule: () => import('https://cdn.jsdelivr.net/npm/photoswipe@5.3.8/dist/photoswipe.esm.min.js'),
         });
-    
+
         lightbox.init();
     </script>
 </body>
