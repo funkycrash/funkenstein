@@ -31,19 +31,6 @@
     border: none;
 }
 
-.photo-wall {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 10px;
-    padding: 20px;
-}
-
-.photo-wall img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 5px;
-}
 
 footer {
     background-color: #000;
@@ -88,10 +75,27 @@ footer p {
 
 
 .photo-wall {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-gap: 10px;
-padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: masonry;
+    masonry-auto-flow: pack;
+    gap: 10px;
+    padding: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+@supports not (grid-template-rows: masonry) {
+    .photo-wall {
+        display: block;
+        column-count: 3;
+        column-gap: 10px;
+    }
+    .photo-wall a {
+        display: block;
+        break-inside: avoid;
+        margin-bottom: 10px;
+    }
 }
 
 .photo-wall a {
